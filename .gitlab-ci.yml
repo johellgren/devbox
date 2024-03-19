@@ -1,0 +1,13 @@
+image: registry.hellnet.se/ubuntu:22.04
+
+# Define the stages of the pipeline
+stages:
+  - test
+
+# Job to run tests
+test:
+  stage: test
+  script:
+    - ./install-ansible.sh debian
+    - source venv/bin/activate
+    - ansible-playbook ansible/configure.yml --ask-become-pass
